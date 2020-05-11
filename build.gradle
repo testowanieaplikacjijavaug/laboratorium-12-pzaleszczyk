@@ -38,4 +38,14 @@ test {
         excludeTags 'slow'
         includeEngines 'junit-jupiter', 'junit-vintage'
     }
+    testLogging {
+      events "passed", "skipped", "failed" //, "standardOut", "standardError"
+
+      showExceptions true
+      exceptionFormat "full"
+      showCauses true
+      showStackTraces true
+
+      showStandardStreams = false
+    }
 }
