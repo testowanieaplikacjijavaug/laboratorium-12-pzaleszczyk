@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.concurrent.TimeUnit;
 
 public class SearchTest {
+	Search page;
     private static WebDriver driver;
     
     @BeforeEach
@@ -24,19 +25,21 @@ public class SearchTest {
     }
 
     @Test
-    public void testSearchDuckDuck() throws Exception {
-        Search page = new Search(driver, "https://duckduckgo.com/");
+    public void duckduckTest() throws Exception {
+        page = new Search(driver, "https://duckduckgo.com/");
+        
         page.search("lmao");
-        page.waitUntilTitle("at DuckDuckGo");
-        assertTrue(page.assertTitleContains("lmao"));
+        page.waitForTitleChange("lmao");
+        assertTrue(page.titleContains("lmao"));
     }
 
     @Test
-    public void testSearchGoogle() throws Exception {
-        Search page = new Search(driver, "https://google.com/");
+    public void googleTest() throws Exception {
+        page = new Search(driver, "https://google.com/");
+        
         page.search("lmao");
-        page.waitUntilTitle("Szukaj w Google");
-        assertTrue(page.assertTitleContains("lmao"));
+        page.waitForTitleChange("lmao");
+        assertTrue(page.titleContains("lmao"));
     }
 
 }

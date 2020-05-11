@@ -22,17 +22,15 @@ public class Search {
         PageFactory.initElements(driver, this);
     }
     
-    public void search(String ask){
-        field.sendKeys(ask, Keys.ENTER);
+    public void search(String query){
+        field.sendKeys(query, Keys.ENTER);
     }
 
-    public void waitUntilTitle(String title){
-        wait.until(ExpectedConditions.titleContains(title));
+    public void waitForTitleChange(String name){
+        wait.until(ExpectedConditions.titleContains(name));
     }
 
-    public boolean assertTitleContains(String title) throws Exception{
-        Boolean result = driver.getTitle().contains(title);
-        System.out.println(driver.getTitle());
-        return(result);
+    public boolean titleContains(String name){
+        return(driver.getTitle().contains(name));
     }
 }
