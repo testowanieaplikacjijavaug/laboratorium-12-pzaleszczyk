@@ -79,6 +79,7 @@ public class ElementPresentDuckTest {
 		page.search("afsddfs");
 		String name = driver.findElement(By.className("result__url__full")).getText();
 		
+		assertEquals("/profile/20707/",name);
 		assertEquals("/questions/504006/algorithm-in-ieee-journal", name);
 	}
 	
