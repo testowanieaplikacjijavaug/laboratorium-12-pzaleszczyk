@@ -2,6 +2,7 @@
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,6 +24,11 @@ public class ElementPresentDuck {
 	
 	public String getResult(int id) {
 		driver.findElement(By.id("r1-"+id)).click();
+		 (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+	            public Boolean apply(WebDriver d) {
+	                return !d.getCurrentUrl().contains("duck");
+	            }
+	        });
 		return driver.getCurrentUrl();
 	}
 	

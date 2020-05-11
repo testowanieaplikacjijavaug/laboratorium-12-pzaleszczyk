@@ -35,7 +35,7 @@ public class PageFactoryTest {
 	public void test9Gag() throws Exception {
 		PageFactoryLol page = PageFactory.initElements(driver, PageFactoryLol.class);
 		driver.navigate().to("https://9gag.com/login");
-		driver.findElement(By.xpath("//*[@id=\"qcCmpButtons\"]/button[2]")).click();
+		//driver.findElement(By.xpath("//*[@id=\"qcCmpButtons\"]/button[2]")).click();
 		page.login("Test", "Test");
 		driver.findElement(By.xpath("//*[@id=\"login-email\"]/div[3]/input")).click();
 
