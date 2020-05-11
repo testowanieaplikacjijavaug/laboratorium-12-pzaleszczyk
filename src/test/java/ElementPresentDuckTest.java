@@ -58,7 +58,7 @@ public class ElementPresentDuckTest {
 		page = new ElementPresentDuck(driver);
 		page.search("mfi.ug.edu.pl");
 		String url = page.getResult(2);
-		assertEquals("https://pe.ug.edu.pl/", url);
+		assertEquals("https://en.mfi.ug.edu.pl/", url);
 	}
 
 

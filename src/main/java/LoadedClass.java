@@ -1,41 +1,56 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoadedClass extends LoadableComponent<LoadedClass> {
 
 	private final WebDriver driver;
-	@FindBy(name = "comment") 
-	private WebElement description;
+
+	@FindBy(xpath = "//*[@id=\"login_button_container\"]/div/form/h3")
+	private WebElement error;
+	@FindBy(id = "user-name")
+	private WebElement user;
+	@FindBy(id = "password")
+	private WebElement pass;
+	@FindBy(className = "btn_action")
+	private WebElement button;
 
 	public LoadedClass(WebDriver driver) {
-
 		this.driver = driver;
-		driver.get("http://parabank.parasoft.com");
+		this.driver.get("https://www.saucedemo.com/index.html");
+		PageFactory.initElements(driver, this);
 	}
 
 	@Override
 	protected void load() {
-		driver.get("https://github.com/SeleniumHQ/selenium/issues/new");
+		driver.get("https://www.saucedemo.com/index.html");
 	}
 
 	@Override
 	protected void isLoaded() throws Error {
 		String url = driver.getCurrentUrl();
-		if(!url.endsWith("/new")) {
+		if(!url.contains("saucedemo")) {
 			throw new Error("Error");
 		}
 	}
 
-	public void enterDescription(String issueDescription) {
-		clearAndType(description, issueDescription);
+	public void login(String name, String password) {
+		user.sendKeys(name);
+		pass.sendKeys(password);
+		button.click();
 	}
 
-	private void clearAndType(WebElement field, String text) {
-		field.clear();
-		field.sendKeys(text);
+	
+	public String getError() {
+		return error.getText();
 	}
+
+	public Object getAddress() {
+		return driver.getCurrentUrl();
+	}
+	
 }

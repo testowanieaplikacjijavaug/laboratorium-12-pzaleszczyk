@@ -24,7 +24,7 @@ public class ElementPresentDuck {
 	
 	public String getResult(int id) {
 		driver.findElement(By.id("r1-"+id)).click();
-		 (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+		 wait.until(new ExpectedCondition<Boolean>() {
 	            public Boolean apply(WebDriver d) {
 	                return !d.getCurrentUrl().contains("duck");
 	            }
